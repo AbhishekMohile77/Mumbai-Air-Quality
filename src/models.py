@@ -65,7 +65,6 @@ class DimParameter(Base):
     name: Mapped[str] = mapped_column(
         String(50),
         nullable=False,
-        unique=True
     )
 
     display_name: Mapped[str] = mapped_column(
@@ -96,44 +95,44 @@ class DimSensor(Base):
         nullable=False
     )
 
-    class DimDate(Base):
-        __tablename__ = "dim_date"
+class DimDate(Base):
+    __tablename__ = "dim_date"
 
-        date_id: Mapped[int] = mapped_column(
-            Integer,
-            primary_key=True
-        )
+    date_id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
 
-        date: Mapped[DateType] = mapped_column(
-            Date,
-            nullable=False,
-            unique=True
-        )
+    date: Mapped[DateType] = mapped_column(
+        Date,
+        nullable=False,
+        unique=True
+    )
 
-        year: Mapped[int] = mapped_column(
-            Integer,
-            nullable=False
-        )
+    year: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False
+    )
 
-        month: Mapped[int] = mapped_column(
-            Integer,
-            nullable=False
-        )
+    month: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False
+    )
 
-        month_name: Mapped[str] = mapped_column(
-            String(20),
-            nullable=False
-        )
+    month_name: Mapped[str] = mapped_column(
+        String(20),
+        nullable=False
+    )
 
-        weekday: Mapped[str] = mapped_column(
-            String(20),
-            nullable=False
-        )
+    weekday: Mapped[str] = mapped_column(
+        String(20),
+        nullable=False
+    )
 
-        is_weekend: Mapped[bool] = mapped_column(
-            Boolean,
-            nullable=False
-        )
+    is_weekend: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False
+    )
 
 
 class FactMeasurement(Base):
