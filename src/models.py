@@ -156,14 +156,20 @@ class FactMeasurement(Base):
 class DataQuality(Base):
     __tablename__ = "data_quality"
 
+    issue_id: Mapped[int] = mapped_column(
+        primary_key=True,
+        autoincrement=True
+    )
+
     sensor_id: Mapped[int] = mapped_column(
         ForeignKey("dim_sensor.sensor_id"),
-        primary_key=True
+        nullable=False,
+        index=True
     )
 
     check_type: Mapped[str] = mapped_column(
         String(100),
-        primary_key=True
+        nullable=False
     )
 
     detail: Mapped[str] = mapped_column(
@@ -174,5 +180,5 @@ class DataQuality(Base):
     flagged_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
-        default=datetime.now(timezone.utc),
+        default=lambda: datetime.now(timezone.utc),
     )
