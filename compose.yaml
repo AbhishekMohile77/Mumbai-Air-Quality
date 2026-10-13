@@ -1,0 +1,24 @@
+x-etl-common: &etl-common
+    build: .
+    image: mumbai-air-quality:latest
+    env_file:
+      - .env
+    environment:
+      DB_HOST: host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    profiles:
+      - jobs
+
+services:
+  dimensions:
+    <<: *etl-common
+    command: ["python", "src/1_load_dimension.py"]
+
+  measurements:
+    <<: *etl-common
+    command: ["python", "src/2_load_measurements.py"]
+
+  quality-checks:
+    <<: *etl-common
+    command: ["python", "src/3_quality_checks.py"]
