@@ -1,8 +1,22 @@
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
+
+# Python environments and cache
 .venv/
+venv/
 __pycache__/
+**/__pycache__/
 *.py[cod]
+
+# Editor settings
 .vscode/
 .idea/
+
+# Logs and temporary files
 logs/*.log
 *.tmp
+
+# Local test
+docker_db_test.py
